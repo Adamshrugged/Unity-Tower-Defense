@@ -11,9 +11,13 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private int mapHeight;
 
     // Decorators
-    [SerializeField] public Color pathColor;
+    /*[SerializeField] public Color pathColor;
     [SerializeField] public Color startColor;
-    [SerializeField] public Color endColor;
+    [SerializeField] public Color endColor;*/
+    [SerializeField] public Sprite pathSprite;
+    [SerializeField] public Sprite startSprite;
+    [SerializeField] public Sprite endSprite;
+    [SerializeField] public Sprite defaultSprite;
 
     // 
     public static List<GameObject> mapTiles = new List<GameObject>();
@@ -42,19 +46,19 @@ public class MapGenerator : MonoBehaviour
             }
         }
 
-        // Testing
-        //Destroy(getBottomEdgeTiles()[0]);
-
-
         // Pick random start and end tile
         List<GameObject> topEdgeTiles = getTopEdgeTiles();
         List<GameObject> bottomEdgeTiles = getBottomEdgeTiles();
 
-        int rand1 = Random.Range(0, mapWidth);
+        /*int rand1 = Random.Range(0, mapWidth);
         int rand2 = Random.Range(0, mapWidth);
 
         startTile = topEdgeTiles[rand1];
-        endTile = bottomEdgeTiles[rand2];
+        endTile = bottomEdgeTiles[rand2];*/
+
+        // Manually set start and end tiles
+        startTile = topEdgeTiles[mapWidth / 2];
+        endTile = bottomEdgeTiles[mapWidth / 2];
 
         // Validate that start and end tiles can be reached
         currentTile = startTile;
@@ -96,13 +100,13 @@ public class MapGenerator : MonoBehaviour
 
         pathTiles.Add(endTile);
 
-        // indiciate path from start to end
+        // Add decorators to map
         foreach(GameObject obj in pathTiles)
         {
-            obj.GetComponent<SpriteRenderer>().color = pathColor;
+            obj.GetComponent<SpriteRenderer>().sprite = pathSprite;
         }
-        startTile.GetComponent<SpriteRenderer>().color = startColor;
-        endTile.GetComponent<SpriteRenderer>().color = endColor;
+        startTile.GetComponent<SpriteRenderer>().sprite = startSprite;
+        endTile.GetComponent<SpriteRenderer>().sprite = endSprite;
     }
 
     // Helper functions for navigating from top to bottom and left/right

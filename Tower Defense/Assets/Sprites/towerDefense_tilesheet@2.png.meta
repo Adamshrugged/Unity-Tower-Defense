@@ -76,7 +76,7 @@ TextureImporter:
     second: towerDefense_tilesheet@2_23
   - first:
       213: -1654414749838339973
-    second: towerDefense_tilesheet@2_24
+    second: _map_grass
   - first:
       213: 2839305979063090952
     second: towerDefense_tilesheet@2_25
@@ -274,16 +274,16 @@ TextureImporter:
     second: towerDefense_tilesheet@2_89
   - first:
       213: -7918510562511569316
-    second: towerDefense_tilesheet@2_90
+    second: _map_base_x
   - first:
       213: -3640478018930519656
-    second: towerDefense_tilesheet@2_91
+    second: _map_base_o
   - first:
       213: -6502932019275784701
     second: towerDefense_tilesheet@2_92
   - first:
       213: 3547163559161682696
-    second: towerDefense_tilesheet@2_93
+    second: _map_dirt
   - first:
       213: -3188235815906498820
     second: towerDefense_tilesheet@2_94
@@ -313,7 +313,7 @@ TextureImporter:
     second: towerDefense_tilesheet@2_102
   - first:
       213: 4829893392671477391
-    second: towerDefense_tilesheet@2_103
+    second: _map_stone
   - first:
       213: 9118380055867657168
     second: towerDefense_tilesheet@2_104
@@ -1504,7 +1504,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: towerDefense_tilesheet@2_24
+      name: _map_grass
       rect:
         serializedVersion: 2
         x: 128
@@ -2890,7 +2890,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: towerDefense_tilesheet@2_90
+      name: _map_base_x
       rect:
         serializedVersion: 2
         x: 2688
@@ -2911,7 +2911,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: towerDefense_tilesheet@2_91
+      name: _map_base_o
       rect:
         serializedVersion: 2
         x: 2816
@@ -2953,7 +2953,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: towerDefense_tilesheet@2_93
+      name: _map_dirt
       rect:
         serializedVersion: 2
         x: 128
@@ -3163,11 +3163,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: towerDefense_tilesheet@2_103
+      name: _map_stone
       rect:
         serializedVersion: 2
-        x: 1408
-        y: 1024
+        x: 1418
+        y: 1006
         width: 128
         height: 128
       alignment: 0

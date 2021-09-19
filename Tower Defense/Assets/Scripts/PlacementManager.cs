@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class PlacementManager : MonoBehaviour
 {
+    [SerializeField] public ShopManager shopManager;
     public GameObject basicTowerObject;
     private GameObject dummyPlacement;
     private GameObject hoverTile;
     public Camera cam;
     public LayerMask mask;
+    public LayerMask towerMask;
     public bool isBuilding;
+
+    private GameObject currentTowerPlacing;
 
     // get fector from mouse position
     public Vector2 GetMousePosition()
@@ -37,10 +41,47 @@ public class PlacementManager : MonoBehaviour
         }
     }
 
-    public void StartBuilding()
+    public bool checkForTower()
+    {
+        bool blocked = false;
+
+        Vector2 mousePosition = GetMousePosition();
+        RaycastHit2D hit = Physics2D.Raycast(mousePosition, new Vector2(0, 0), 0.1f, towerMask, -20, 20);
+
+        if( hit.collider != null)
+        {
+            blocked = true;
+        }
+
+        return blocked;
+    }
+
+    public void placeBuilding()
+    {
+        if(hoverTile != null && !checkForTower() )
+        {
+            if (shopManager.CanBuyTower(currentTowerPlacing))
+            {
+                GameObject newTower = Instantiate(currentTowerPlacing);
+                newTower.layer = LayerMask.NameToLayer("Tower");
+                newTower.transform.position = hoverTile.transform.position;
+            }
+            else
+            {
+                Debug.Log("Insufficient money to buy tower");
+            }
+
+            EndBuilding();
+            shopManager.buyTower(currentTowerPlacing);
+        }
+    }
+
+    public void StartBuilding(GameObject towerToBuild)
     {
         isBuilding = true;
-        dummyPlacement = Instantiate(basicTowerObject);
+        currentTowerPlacing = towerToBuild;
+
+        dummyPlacement = Instantiate(currentTowerPlacing);
         if( dummyPlacement.GetComponent<Tower>() != null )
         {
             Destroy(dummyPlacement.GetComponent<Tower>());
@@ -54,11 +95,26 @@ public class PlacementManager : MonoBehaviour
     public void EndBuilding()
     {
         isBuilding = false;
+        if(dummyPlacement != null)
+        {
+            Destroy(dummyPlacement);
+        }
     }
 
     public void Update()
     {
-        Debug.Log(GetMousePosition());
-        StartBuilding();
+        if(isBuilding && dummyPlacement != null)
+        {
+            currentHoverTile();
+            if(hoverTile!=null)
+            {
+                dummyPlacement.transform.position = hoverTile.transform.position;
+            }
+        }
+
+        if(Input.GetButtonDown("Fire1"))
+        {
+            placeBuilding();
+        }
     }
 }
