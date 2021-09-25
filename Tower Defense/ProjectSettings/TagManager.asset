@@ -55,3 +55,6 @@ TagManager:
   - name: Towers
     uniqueID: 3254667259
     locked: 0
+  - name: Bullets
+    uniqueID: 4292461131
+    locked: 0

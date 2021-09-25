@@ -5,6 +5,7 @@ using UnityEngine;
 public class MapGenerator : MonoBehaviour
 {
     [SerializeField] public GameObject MapTile;
+    [SerializeField] public GameObject ParentGameObject;
 
     // Map width and height
     [SerializeField] private int mapWidth;
@@ -40,7 +41,7 @@ public class MapGenerator : MonoBehaviour
         {
             for (int x = 0; x < mapWidth; x++)
             {
-                GameObject newTile = Instantiate(MapTile);
+                GameObject newTile = Instantiate(MapTile, ParentGameObject.transform);
                 mapTiles.Add(newTile);
                 newTile.transform.position = new Vector2(x, y);
             }

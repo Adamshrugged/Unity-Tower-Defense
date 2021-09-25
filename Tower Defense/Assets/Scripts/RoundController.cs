@@ -11,6 +11,7 @@ enum RoundState
 
 public class RoundController : MonoBehaviour
 {
+    [SerializeField] public GameObject parentGameObject;
     [SerializeField] public GameObject basicEnemy;
 
     [SerializeField] public float timeBetweenWaves;
@@ -38,8 +39,11 @@ public class RoundController : MonoBehaviour
     {
         for( int i=0; i<round; i++)
         {
-            GameObject newEnemy = Instantiate(basicEnemy, 
-                MapGenerator.startTile.transform.position, Quaternion.identity);
+            Vector3 newPos = MapGenerator.startTile.transform.position;
+            newPos.y = newPos.y + 1;
+            GameObject newEnemy = Instantiate(basicEnemy,
+                parentGameObject.transform);
+            newEnemy.transform.position = newPos;
             yield return new WaitForSeconds(1f);
         }
     }

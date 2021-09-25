@@ -74,7 +74,5 @@ public class Enemy : MonoBehaviour
         // Check if end reached
         checkPosition();
         moveEnemy();
-
-        takeDamage(0);
     }
 }

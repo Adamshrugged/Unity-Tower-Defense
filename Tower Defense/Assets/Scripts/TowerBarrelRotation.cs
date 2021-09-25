@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class TowerBarrelRotation : MonoBehaviour
 {
+    /*
     [SerializeField] public Transform pivot;
     [SerializeField] public Transform barrel;
 
     public Tower tower;
+    bool shotAimed = false;
 
     private void Update()
     {
@@ -18,6 +20,10 @@ public class TowerBarrelRotation : MonoBehaviour
 
             Vector3 newRotation = new Vector3(0, 0, angle);
             pivot.localRotation = Quaternion.Euler(newRotation);
+
+            // Toggle aimed to true
+            shotAimed = true;
         }
-    }
+        shotAimed = false;
+    }*/
 }

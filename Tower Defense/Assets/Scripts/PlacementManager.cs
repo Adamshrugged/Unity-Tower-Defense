@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlacementManager : MonoBehaviour
 {
     [SerializeField] public ShopManager shopManager;
+    [SerializeField] public GameObject parentGameObject;
     public GameObject basicTowerObject;
     private GameObject dummyPlacement;
     private GameObject hoverTile;
@@ -62,7 +63,7 @@ public class PlacementManager : MonoBehaviour
         {
             if (shopManager.CanBuyTower(currentTowerPlacing))
             {
-                GameObject newTower = Instantiate(currentTowerPlacing);
+                GameObject newTower = Instantiate(currentTowerPlacing, parentGameObject.transform);
                 newTower.layer = LayerMask.NameToLayer("Tower");
                 newTower.transform.position = hoverTile.transform.position;
             }
@@ -111,7 +112,7 @@ public class PlacementManager : MonoBehaviour
                 dummyPlacement.transform.position = hoverTile.transform.position;
             }
         }
-
+        
         if(Input.GetButtonDown("Fire1"))
         {
             placeBuilding();
