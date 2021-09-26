@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] float bulletDamage = 1.0f;
-    [SerializeField] float bulletSpeed = 1.0f;
+    [SerializeField] int bulletSpeed;
     public GameObject target = null;
+    public float damage;
+    private bool moving = false;
 
     private void Update()
     {
-        if (target != null)
+        // Set movement if there is a target and bullet is not already moving
+        if (target != null && !moving)
         {
-            Vector3 dir = target.transform.position - transform.position;
-            GetComponent<Rigidbody2D>().velocity = dir.normalized * (int)bulletSpeed*10;
-        }
-        else
-        {
-            transform.position += transform.right * bulletSpeed * 0.01f;
+            Vector3 direction = target.transform.position - transform.position;
+            GetComponent<Rigidbody2D>().velocity = direction.normalized * bulletSpeed;
+            moving = true;
         }
     }
 
@@ -31,10 +30,10 @@ public class Bullet : MonoBehaviour
         // Validate if bullet hit an enemy
         if(collision.gameObject.GetComponent<Enemy>() != null )
         {
-            collision.gameObject.GetComponent<Enemy>().takeDamage(bulletDamage);
-        }
+            collision.gameObject.GetComponent<Enemy>().takeDamage(damage);
 
-        // Destroy bullet
-        Destroy(gameObject);
+            // Destroy bullet
+            Destroy(gameObject);
+        }
     }
 }

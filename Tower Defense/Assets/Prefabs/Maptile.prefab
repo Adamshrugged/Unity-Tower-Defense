@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8324957697886715234}
   - component: {fileID: 2444348421904589581}
   - component: {fileID: -4319980505278427489}
+  - component: {fileID: -334344705366823400}
   m_Layer: 0
   m_Name: Maptile
   m_TagString: MapTile
@@ -109,3 +110,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-334344705366823400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166502274991139297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14efc21c985a78446a5c34a06eb9c584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverColor: {r: 0.23082057, g: 0.78903437, b: 0.8584906, a: 0.7294118}
