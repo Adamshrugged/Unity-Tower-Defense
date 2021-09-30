@@ -153,8 +153,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1894697714}
-  - {fileID: 635696752}
   - {fileID: 323931400}
+  - {fileID: 635696752}
   - {fileID: 1333407734}
   - {fileID: 1796953159}
   m_Father: {fileID: 532992015}
@@ -3876,11 +3876,11 @@ RectTransform:
   m_Children:
   - {fileID: 809451331}
   m_Father: {fileID: 12276866}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -100}
+  m_AnchoredPosition: {x: 10, y: -50}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &323931401
@@ -4468,7 +4468,7 @@ GameObject:
   - component: {fileID: 635696754}
   - component: {fileID: 635696753}
   m_Layer: 5
-  m_Name: MoneyText
+  m_Name: EnergyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4487,11 +4487,11 @@ RectTransform:
   m_Children:
   - {fileID: 1385767419}
   m_Father: {fileID: 12276866}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -50}
+  m_AnchoredPosition: {x: 10, y: -100}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &635696753
@@ -4527,7 +4527,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Money:'
+  m_Text: 'Energy:'
 --- !u!222 &635696754
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5134,7 +5134,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 536a5809b7ab4694ca42730bd3f8eea6, type: 3}
+  m_Sprite: {fileID: 2539138467979641940, guid: de6c726bd9133954e935eea50040932b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5336,11 +5336,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 185185743}
-  moneyText: {fileID: 1385767420}
+  energyText: {fileID: 635696753}
   waveText: {fileID: 809451332}
   healthText: {fileID: 870972276}
   countdownText: {fileID: 571815829}
-  startingMoney: 250
+  startingEnergy: 0
 --- !u!1 &1344733757
 GameObject:
   m_ObjectHideFlags: 0
@@ -5481,7 +5481,7 @@ GameObject:
   - component: {fileID: 1385767421}
   - component: {fileID: 1385767420}
   m_Layer: 5
-  m_Name: Money
+  m_Name: Energy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5683,7 +5683,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 536a5809b7ab4694ca42730bd3f8eea6, type: 3}
+  m_Sprite: {fileID: -5988600362070415710, guid: de6c726bd9133954e935eea50040932b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

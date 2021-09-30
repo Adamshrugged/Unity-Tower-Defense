@@ -757,10 +757,10 @@ TextureImporter:
     second: Tower_Top_6
   - first:
       213: -6107155909932373041
-    second: towerDefense_tilesheet@2_251
+    second: missile_1
   - first:
       213: -3050834271890376666
-    second: towerDefense_tilesheet@2_252
+    second: missile_2
   - first:
       213: 432991315737532931
     second: towerDefense_tilesheet@2_253
@@ -820,16 +820,16 @@ TextureImporter:
     second: towerDefense_tilesheet@2_271
   - first:
       213: 8151701411911983755
-    second: towerDefense_tilesheet@2_272
+    second: bullet_1
   - first:
       213: -2091190902965128135
-    second: towerDefense_tilesheet@2_273
+    second: bullet_2
   - first:
       213: -47188521549339112
-    second: towerDefense_tilesheet@2_274
+    second: bullet_3
   - first:
       213: -1276145851192562573
-    second: towerDefense_tilesheet@2_275
+    second: bullet_4
   - first:
       213: 316753804652462999
     second: towerDefense_tilesheet@2_276
@@ -6271,7 +6271,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: towerDefense_tilesheet@2_251
+      name: missile_1
       rect:
         serializedVersion: 2
         x: 2688
@@ -6292,7 +6292,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: towerDefense_tilesheet@2_252
+      name: missile_2
       rect:
         serializedVersion: 2
         x: 2816
@@ -6712,7 +6712,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: towerDefense_tilesheet@2_272
+      name: bullet_1
       rect:
         serializedVersion: 2
         x: 2432
@@ -6733,7 +6733,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: towerDefense_tilesheet@2_273
+      name: bullet_2
       rect:
         serializedVersion: 2
         x: 2560
@@ -6754,7 +6754,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: towerDefense_tilesheet@2_274
+      name: bullet_3
       rect:
         serializedVersion: 2
         x: 2688
@@ -6775,7 +6775,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: towerDefense_tilesheet@2_275
+      name: bullet_4
       rect:
         serializedVersion: 2
         x: 2816

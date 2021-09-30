@@ -5,16 +5,16 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     [SerializeField] public Text scoreText;
-    [SerializeField] public Text moneyText;
+    [SerializeField] public Text energyText;
     [SerializeField] public Text waveText;
     [SerializeField] public Text healthText;
     [SerializeField] public Text countdownText;
 
     // Starting money
-    [SerializeField] private int startingMoney;
+    [SerializeField] private int startingEnergy;
 
     private int score;
-    private int money;
+    private int energy;
     private int wave;
     private int health;
     private int countdown;
@@ -23,14 +23,14 @@ public class UIController : MonoBehaviour
     {
         // Starting values
         score = 0;
-        money = startingMoney;
+        energy = startingEnergy;
         wave = 1;
         health = 1;
         countdown = 0;
 
         // set intial values in UI
         scoreText.text = score.ToString();
-        moneyText.text = money.ToString();
+        energyText.text = energy.ToString();
         waveText.text = wave.ToString();
         healthText.text = health.ToString();
         countdownText.text = countdown.ToString();
@@ -41,10 +41,10 @@ public class UIController : MonoBehaviour
         score += points;
         scoreText.text = score.ToString();
     }
-    public void setMoney(int m)
+    public void setEnergy(int m)
     {
-        money += money;
-        moneyText.text = money.ToString();
+        energy += energy;
+        energyText.text = energy.ToString();
     }
     public void setWave(int w)
     {
