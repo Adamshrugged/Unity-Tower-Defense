@@ -4,6 +4,7 @@ public class BuildManager : MonoBehaviour
 {
     public static BuildManager instance;
     [SerializeField] public GameObject standardTurretPrefab;
+    [SerializeField] public GameObject missileTurretPrefab;
     private GameObject turretToBuild;
 
     // Only one build manager - called when awoken
@@ -12,19 +13,15 @@ public class BuildManager : MonoBehaviour
         instance = this;
     }
 
-    private void Start()
-    {
-        turretToBuild = standardTurretPrefab;
-    }
-
 
     public GameObject GetTurretToBuild()
     {
-        if (turretToBuild == null)
-        {
-            Debug.Log("turret is null");
-        }
         return turretToBuild;
+    }
+
+    public void setTurretToBuild(GameObject turret)
+    {
+        turretToBuild = turret;
     }
 
 }

@@ -68,8 +68,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1040300037
-  m_SortingLayer: 4
+  m_SortingLayerID: -54487455
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 2539138467979641940, guid: de6c726bd9133954e935eea50040932b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -131,6 +131,9 @@ MonoBehaviour:
   range: 2
   damage: 10
   timeBetweenShorts: 1
+  fireRate: 1
+  turnSpeed: 10
+  fireCountdown: 0
   bullet: {fileID: 6902548637892529106, guid: ce62f07bb3d45ca47a5ef087b9e79a4c, type: 3}
   barrel: {fileID: 2985280738236388406}
   pivot: {fileID: 6247510001185379884}
@@ -267,7 +270,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8223131916513578892}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2985280738236388406}

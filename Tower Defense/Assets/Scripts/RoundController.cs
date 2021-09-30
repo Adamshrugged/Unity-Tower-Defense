@@ -17,6 +17,8 @@ public class RoundController : MonoBehaviour
     [SerializeField] public float timeBetweenWaves;
     [SerializeField] public float timeBeforeRoundStarts;
 
+    [SerializeField] public UIController uiController;
+
     int round;
     public float timeVariable;
 
@@ -51,6 +53,14 @@ public class RoundController : MonoBehaviour
 
     private void Update()
     {
+        // Update wave countdown
+        float waveCountdown = timeVariable - Time.time;
+        if( 0f < waveCountdown && waveCountdown < 5f)
+        {
+            uiController.setCountdown( (int)waveCountdown );
+        }
+
+        // check game state
         if(state == RoundState.START)
         {
             if(Time.time >= timeVariable)
@@ -82,6 +92,9 @@ public class RoundController : MonoBehaviour
                 state = RoundState.INTERMISSION;
                 timeVariable = Time.time + timeBetweenWaves;
                 round++;
+
+                // Update UI with current round
+                uiController.setWave(round+1);
             }
         }
     }
