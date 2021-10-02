@@ -2,13 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum RoundState
-{
-    ROUND,
-    INTERMISSION,
-    START
-}
-
 public class RoundController : MonoBehaviour
 {
     [SerializeField] public GameObject parentGameObject;
@@ -21,16 +14,11 @@ public class RoundController : MonoBehaviour
 
     int round;
     public float timeVariable;
-
-    private RoundState state;
+    private float countdown;
 
     private void Start()
     {
-        state = RoundState.START;
-        round = 1;
-
-        // Designate when round will start
-        timeVariable = Time.time + timeBeforeRoundStarts;
+        round = 0;
     }
 
     private void SpawnEnemies()
@@ -39,13 +27,19 @@ public class RoundController : MonoBehaviour
     }
     IEnumerator ISpawnEnemies()
     {
-        for( int i=0; i<round; i++)
+        Vector3 newPos = MapGenerator.startTile.transform.position;
+        Vector3 finalPos;
+
+        for ( int i=0; i<round; i++)
         {
-            Vector3 newPos = MapGenerator.startTile.transform.position;
-            newPos.y = newPos.y + 1;
-            GameObject newEnemy = Instantiate(basicEnemy,
+            finalPos = newPos;
+            // Add some randomness to location
+            finalPos.x += Random.Range(-1.1f, 1.1f);
+            finalPos.y += 1f;
+
+            GameObject newEnemy = Instantiate(basicEnemy, finalPos, Quaternion.identity,
                 parentGameObject.transform);
-            newEnemy.transform.position = newPos;
+            //newEnemy.transform.position = finalPos;
             yield return new WaitForSeconds(1f);
         }
     }
@@ -53,49 +47,19 @@ public class RoundController : MonoBehaviour
 
     private void Update()
     {
-        // Update wave countdown
-        float waveCountdown = timeVariable - Time.time;
-        if( 0f < waveCountdown && waveCountdown < 5f)
+        // Change countdown
+        countdown -= Time.deltaTime;
+
+        // When countdown reaches zero, send wave and reset counter
+        if(countdown <= 0f)
         {
-            uiController.setCountdown( (int)waveCountdown );
+            countdown = timeBetweenWaves;
+            round++;
+            uiController.setWave(round);
+            SpawnEnemies();
         }
 
-        // check game state
-        if(state == RoundState.START)
-        {
-            if(Time.time >= timeVariable)
-            {
-                state = RoundState.ROUND;
-                SpawnEnemies();
-                return;
-            }
-        }
-        else if(state == RoundState.INTERMISSION)
-        {
-            if (Time.time >= timeVariable)
-            {
-                state = RoundState.ROUND;
-                SpawnEnemies();
-                return;
-            }
-        }
-        else if (state == RoundState.ROUND)
-        {
-            // Check amount of enemies remaining
-            if(Enemies.enemies.Count > 0)
-            {
-                //
-            }
-            else
-            {
-                // intermission after killing enemies
-                state = RoundState.INTERMISSION;
-                timeVariable = Time.time + timeBetweenWaves;
-                round++;
-
-                // Update UI with current round
-                uiController.setWave(round+1);
-            }
-        }
+        // Update UI
+        uiController.setCountdown(countdown);
     }
 }

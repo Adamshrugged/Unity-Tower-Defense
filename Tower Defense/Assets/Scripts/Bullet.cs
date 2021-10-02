@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] int bulletSpeed;
     [SerializeField] float explosionRadius = 0f;
+    [SerializeField] GameObject impactEffect = null;
     public GameObject target = null;
     public float damage;
     private bool moving = false;
@@ -37,6 +38,13 @@ public class Bullet : MonoBehaviour
         // Validate if bullet hit an enemy
         if(collision.gameObject.GetComponent<Enemy>() != null )
         {
+            // Apply particle effect if defined
+            if (impactEffect != null)
+            {
+                GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
+                Destroy(effectIns, 1f);
+            }
+
             // Check if there is splash damage
             if(explosionRadius > 0f)
             {
@@ -46,7 +54,6 @@ public class Bullet : MonoBehaviour
             else
             {
                 Damage(collision.gameObject);
-                //collision.gameObject.GetComponent<Enemy>().takeDamage(damage);
             }
 
             // Destroy bullet
@@ -57,11 +64,13 @@ public class Bullet : MonoBehaviour
     // Apply damage to multiple targets
     private void Explode(GameObject target)
     {
-        Collider[] targets = Physics.OverlapSphere(transform.position, explosionRadius);
+        // Create circle around missile of size explosion radius to determine what objects are impacts
+        Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
 
-        foreach(Collider collider in targets)
+        // Cycle through each object and if it is an enemy, then apply damage
+        foreach(Collider2D collider in targets)
         {
-            if(collider.tag == "Enemy")
+            if(collider.gameObject.tag == "Enemy")
             {
                 Damage(collider.gameObject);
             }

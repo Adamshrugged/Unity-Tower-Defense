@@ -6,12 +6,13 @@ using UnityEngine.EventSystems;
 public class Node : MonoBehaviour
 {
     [SerializeField] Color hoverColor;
+    [SerializeField] Color LowEnergyColor;
     private SpriteRenderer rend;
     private Color startColor;
 
     BuildManager buildManager;
 
-    private GameObject turret;
+    public GameObject turret;
 
     private void Start()
     {
@@ -20,6 +21,12 @@ public class Node : MonoBehaviour
         turret = null;
 
         buildManager = BuildManager.instance;
+    }
+
+    // Position
+    public Vector3 GetBuildPosition()
+    {
+        return transform.position;
     }
 
     private void OnMouseDown()
@@ -31,21 +38,19 @@ public class Node : MonoBehaviour
         }
 
         // check if selected turret is blank, if so then do not perform any actions
-        if (buildManager.GetTurretToBuild() == null)
+        if (!buildManager.CanBuild)
         {
             return;
         }
 
-        Debug.Log(turret);
         if (turret != null)
         {
             Debug.Log("Cannot build here");
             return;
         }
 
-        // Display build UI
-        GameObject turretToBuild = BuildManager.instance.GetTurretToBuild();
-        turret = (GameObject)Instantiate(turretToBuild, transform.position, transform.rotation);
+        // can build
+        buildManager.BuildTurretOn(this);
     }
 
     private void OnMouseEnter()
@@ -56,15 +61,21 @@ public class Node : MonoBehaviour
             return;
         }
 
-
         // check if selected turret is blank, if so then do not perform any actions
-        if (buildManager.GetTurretToBuild() == null)
+        if (!buildManager.CanBuild)
         {
             return;
         }
 
-        // if there is a turret selected, then add color to node
-        rend.material.color = hoverColor;
+        // if there is a turret selected, then add color to node depending on available funds
+        if(buildManager.CanBuy)
+        {
+            rend.material.color = hoverColor;
+        }
+        else
+        {
+            rend.material.color = LowEnergyColor;
+        }
     }
 
     private void OnMouseExit()

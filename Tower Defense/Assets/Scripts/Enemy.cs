@@ -6,6 +6,9 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float enemyHealth;
     [SerializeField] private float movementSpeed;
+    [SerializeField] private int scoreValue;
+
+    [SerializeField] UIController uIController;
 
     // Money rewarded to player upon death
     private int killReward;
@@ -18,6 +21,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         Enemies.enemies.Add(gameObject);
+        uIController = GameObject.FindGameObjectWithTag("UIUpdateText").GetComponent<UIController>();
     }
 
     private void Start()
@@ -44,6 +48,9 @@ public class Enemy : MonoBehaviour
     {
         Enemies.enemies.Remove(gameObject);
         Destroy(transform.gameObject);
+
+        // reward player for death
+        uIController.setScore(scoreValue);
     }
 
     private void moveEnemy()
@@ -67,6 +74,20 @@ public class Enemy : MonoBehaviour
                 targetTile = MapGenerator.pathTiles[currentIndex + 1];
             }
         }
+
+        // reached end of map
+        if(gameObject.transform.position == MapGenerator.endTile.transform.position)
+        {
+            reachedEnd();
+        }
+    }
+
+    // Decrease lives and destroy object
+    private void reachedEnd()
+    {
+        PlayerStats.lives -= (int)enemyHealth;
+        uIController.setLives();
+        Destroy(gameObject);
     }
 
     private void Update()

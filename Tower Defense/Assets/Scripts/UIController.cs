@@ -10,29 +10,24 @@ public class UIController : MonoBehaviour
     [SerializeField] public Text healthText;
     [SerializeField] public Text countdownText;
 
-    // Starting money
-    [SerializeField] private int startingEnergy;
-
     private int score;
     private int energy;
     private int wave;
-    private int health;
-    private int countdown;
+    private float countdown;
 
     private void Awake()
     {
         // Starting values
         score = 0;
-        energy = startingEnergy;
-        wave = 1;
-        health = 1;
+        energy = 0;
+        wave = 0;
         countdown = 0;
 
         // set intial values in UI
         scoreText.text = score.ToString();
         energyText.text = energy.ToString();
         waveText.text = wave.ToString();
-        healthText.text = health.ToString();
+        setLives();
         countdownText.text = countdown.ToString();
     }
 
@@ -41,36 +36,28 @@ public class UIController : MonoBehaviour
         score += points;
         scoreText.text = score.ToString();
     }
-    public void setEnergy(int m)
+    public void updateEnergy(int m)
     {
-        energy += energy;
-        energyText.text = energy.ToString();
+        energyText.text = m.ToString();
     }
     public void setWave(int w)
     {
         wave = w;
         waveText.text = wave.ToString();
     }
-    public void setHealth(int healthAdjust)
+    public void setLives()
     {
-        health += healthAdjust;
-        healthText.text = health.ToString();
+        healthText.text = PlayerStats.lives.ToString();
     }
-    public void setCountdown(int c)
+    public void setCountdown(float c)
     {
         countdown = c;
 
-        if(c == 0)
-        {
-            countdownText.text = "";
-        }
-        else
-        {
-            countdownText.text = countdown.ToString();
-        }
+        countdownText.text = string.Format("{0:0.0}", countdown);
 
         // if less than 5, add emphasis
-        if(c < 5 && c > 0)
+        countdownText.color = Color.black;
+        if (c < 5 && c > 0)
         {
             countdownText.color = Color.red;
         }

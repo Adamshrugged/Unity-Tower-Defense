@@ -56,12 +56,16 @@ public class Tower : MonoBehaviour
             // Loop through enemies in scene
             foreach (GameObject enemy in Enemies.enemies)
             {
-                // get distance to enemy
-                float distToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-                if(distToEnemy < shortestDistance)
+                // Ignore any destroyed enemies in the list
+                if (enemy != null)
                 {
-                    enemyNearest = enemy;
-                    shortestDistance = distToEnemy;
+                    // get distance to enemy
+                    float distToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+                    if (distToEnemy < shortestDistance)
+                    {
+                        enemyNearest = enemy;
+                        shortestDistance = distToEnemy;
+                    }
                 }
             }
         }

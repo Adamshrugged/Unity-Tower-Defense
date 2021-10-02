@@ -99,6 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealth: 50
   movementSpeed: 0.5
+  scoreValue: 1
+  uIController: {fileID: 0}
 --- !u!61 &3606482778647671213
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -112,7 +114,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.021705627, y: 0.022455752}
+  m_Offset: {x: -0.031768326, y: 0.010617331}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -123,7 +125,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.31447148, y: 0.42531067}
+  m_Size: {x: 0.23515391, y: 0.24299851}
   m_EdgeRadius: 0
 --- !u!50 &667968745809893166
 Rigidbody2D:
