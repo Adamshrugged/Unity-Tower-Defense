@@ -5,9 +5,10 @@ public class BuildManager : MonoBehaviour
     public static BuildManager instance;
     [SerializeField] public GameObject parentGameObject;
 
-    // Starting money
     [SerializeField] UIController uIController;
     [SerializeField] NodeUI nodeUI;
+    [SerializeField] public GameObject sellEffect;
+    [SerializeField] public GameObject upgradeEffect;
 
     [Header("Optional")]
     private TurretBlueprint turretToBuild;

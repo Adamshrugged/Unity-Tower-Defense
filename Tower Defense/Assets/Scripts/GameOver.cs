@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
     [SerializeField] public Text roundsText;
+    [SerializeField] public sceneFader sceneFader;
+    [SerializeField] string menuScene = "TDGameMenu";
 
     private void OnEnable()
     {
@@ -16,12 +18,11 @@ public class GameOver : MonoBehaviour
     public void Retry()
     {
         // reloads currently loaded scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        //SceneManager.LoadScene("TDGameScene");
+        sceneFader.FadeTo(SceneManager.GetActiveScene().name);
     }
 
     public void Menu ()
     {
-        Debug.Log("go to menu");
+        sceneFader.FadeTo(menuScene);
     }
 }

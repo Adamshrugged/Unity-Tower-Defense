@@ -31,6 +31,11 @@ public class UIController : MonoBehaviour
         countdownText.text = countdown.ToString();
     }
 
+    private void Update()
+    {
+        energyText.text = PlayerStats.energy.ToString();
+    }
+
     public void setScore(int points)
     {
         score += points;

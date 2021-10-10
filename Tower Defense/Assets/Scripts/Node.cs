@@ -13,6 +13,8 @@ public class Node : MonoBehaviour
     BuildManager buildManager;
 
     public GameObject turret;
+    public TurretBlueprint turretBlueprint;
+    public bool isUpgraded = false;
 
     private void Start()
     {
@@ -57,6 +59,9 @@ public class Node : MonoBehaviour
     // Build a turret
     void BuildTurret(TurretBlueprint blueprint)
     {
+        // set blueprint
+        turretBlueprint = blueprint;
+
         // Verify player has sufficent energy
         if (PlayerStats.energy < blueprint.cost)
         {
@@ -71,6 +76,48 @@ public class Node : MonoBehaviour
         GameObject _turret = (GameObject)Instantiate(blueprint.prefab, GetBuildPosition(),
             Quaternion.identity, buildManager.parentGameObject.transform);
         turret = _turret;
+    }
+
+    public void UpgradeTurret()
+    {
+        if(PlayerStats.energy < turretBlueprint.upgradeCost)
+        {
+            Debug.Log("Not enough energy to upgrade");
+            return;
+        }
+
+
+        // Subtract funds
+        PlayerStats.energy -= turretBlueprint.upgradeCost;
+
+        // Generate new turret from prefab
+        GameObject _turret = (GameObject)Instantiate(turretBlueprint.upgradedPrefab, turret.transform.position,
+            Quaternion.identity, buildManager.parentGameObject.transform);
+
+        // Remove prior turret and set new one
+        Destroy(turret);
+        turret = _turret;
+
+        // set flag for turret being upgrade
+        isUpgraded = true;
+
+        // Effect for upgrading turret
+        GameObject effect = (GameObject)Instantiate(buildManager.upgradeEffect, _turret.transform.position,
+            Quaternion.identity);
+        Destroy(effect, 0.5f);
+    }
+
+    public void SellTurret()
+    {
+        PlayerStats.energy += turretBlueprint.GetSellAmount();
+
+        // Effect for selling turret
+        GameObject effect = (GameObject)Instantiate(buildManager.sellEffect, turret.transform.position,
+            Quaternion.identity);
+        Destroy(effect, 1f);
+
+        Destroy(turret);
+        turretBlueprint = null;
     }
 
     private void OnMouseEnter()
@@ -90,11 +137,13 @@ public class Node : MonoBehaviour
         // if there is a turret selected, then add color to node depending on available funds
         if(buildManager != null && buildManager.CanBuy)
         {
-            rend.material.color = hoverColor;
+            if(rend != null)
+                rend.material.color = hoverColor;
         }
         else
         {
-            rend.material.color = LowEnergyColor;
+            if(rend != null)
+                rend.material.color = LowEnergyColor;
         }
     }
 

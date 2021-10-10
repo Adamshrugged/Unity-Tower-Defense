@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6902548637892529106}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 8151701411911983755, guid: de6c726bd9133954e935eea50040932b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.26415092, g: 0.088465646, b: 0.088465646, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -97,11 +97,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32f42fa045a604f41b1f8f7cf52429d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 3
+  bulletSpeed: 2
   explosionRadius: 0
   impactEffect: {fileID: 0}
-  target: {fileID: 0}
+  damageOverTime: 0
+  damageOverTimeDuration: 0
   damage: 0
+  target: {fileID: 0}
+  slowPercent: 1
 --- !u!61 &6203806181435663561
 BoxCollider2D:
   m_ObjectHideFlags: 0

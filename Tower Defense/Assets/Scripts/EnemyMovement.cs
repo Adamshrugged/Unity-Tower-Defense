@@ -16,6 +16,10 @@ public class EnemyMovement : MonoBehaviour
     // Information on map
     public MapGenerator map;
 
+    // Rotation offset for sprite direction
+    [SerializeField] public float offset = 0f;
+    [SerializeField] GameObject sprite;
+
     private Enemy enemy;
 
     private void Start()
@@ -57,6 +61,10 @@ public class EnemyMovement : MonoBehaviour
         */
         Vector3 dir = targetTile.transform.position - transform.position;
         transform.Translate(dir.normalized * movementSpeed * Time.deltaTime, Space.World);
+
+        // Rotate sprite
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        sprite.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + offset));
     }
 
     private void checkPosition()

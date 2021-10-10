@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -8,6 +7,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int scoreValue;
 
     [SerializeField] UIController uIController;
+    [SerializeField] public Image healthBar;
+
+    private float maxHealth;
 
     // Damage over time effect
     float damageOverTime = 0f;
@@ -31,13 +33,16 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         enemyMovement = GetComponent<EnemyMovement>();
+        maxHealth = enemyHealth;
     }
 
     public void takeDamage(float amount)
     {
         enemyHealth -= amount;
 
-        if(enemyHealth <= 0)
+        healthBar.fillAmount = enemyHealth / maxHealth;
+
+        if (enemyHealth <= 0)
         {
             die();
         }

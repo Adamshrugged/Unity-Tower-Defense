@@ -3,7 +3,6 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] public float panSpeed = 1f;
-    private bool allowMovement = true;
 
     // Update is called once per frame
     void Update()
@@ -11,18 +10,6 @@ public class CameraController : MonoBehaviour
         if(GameManager.gameIsOver)
         {
             this.enabled = false;
-            return;
-        }
-
-        // Allow toggling of movement
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            allowMovement = !allowMovement;
-        }
-
-        // check if movement is allowed
-        if (!allowMovement)
-        {
             return;
         }
 
