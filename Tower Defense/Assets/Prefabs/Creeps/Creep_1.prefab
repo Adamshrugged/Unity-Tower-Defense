@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3438367931600745935}
   - component: {fileID: 3438367931600745934}
   - component: {fileID: 4314742498290409960}
+  - component: {fileID: 4611192476640635106}
   - component: {fileID: 3606482778647671213}
   - component: {fileID: 667968745809893166}
   m_Layer: 0
@@ -98,9 +99,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 50
-  movementSpeed: 0.5
   scoreValue: 1
   uIController: {fileID: 0}
+--- !u!114 &4611192476640635106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3438367931600745928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c9eddb794f0e14eaffe5677c74befb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 0.5
+  startSpeed: 0
+  slowTime: 2
+  slowTimeRemaining: 0
+  mapGO: {fileID: 0}
 --- !u!61 &3606482778647671213
 BoxCollider2D:
   m_ObjectHideFlags: 0

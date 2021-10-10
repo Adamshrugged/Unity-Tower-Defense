@@ -21,11 +21,11 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] public Sprite defaultSprite;
 
     // 
-    public static List<GameObject> mapTiles = new List<GameObject>();
-    public static List<GameObject> pathTiles = new List<GameObject>();
+    public List<GameObject> mapTiles = new List<GameObject>();
+    public List<GameObject> pathTiles = new List<GameObject>();
 
-    public static GameObject startTile;
-    public static GameObject endTile;
+    public GameObject startTile;
+    public GameObject endTile;
 
     // Validate that map if navigable
     private bool reachedX = false;
@@ -67,7 +67,7 @@ public class MapGenerator : MonoBehaviour
         while(!reachedX && loopCount < 100)
         {
             // Navigate left or right to match the target x value
-            if(currentTile.transform.position.x > endTile.transform.position.x)
+            /*if(currentTile.transform.position.x > endTile.transform.position.x)
             {
                 moveLeft();
             }
@@ -78,7 +78,7 @@ public class MapGenerator : MonoBehaviour
             else
             {
                 reachedX = true;
-            }
+            }*/
 
             if (currentTile.transform.position.y > endTile.transform.position.y)
             {

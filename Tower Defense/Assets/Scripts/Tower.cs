@@ -7,10 +7,11 @@ public class Tower : MonoBehaviour
     [Header("Attributes")]
     [SerializeField] private float range;
     [SerializeField] private float damage;
-    [SerializeField] private float timeBetweenShorts; // in seconds
     [SerializeField] private float fireRate = 1f;
-    [SerializeField] private float turnSpeed = 10f;
     [SerializeField] private float fireCountdown = 0f;
+    [SerializeField] public float damageOverTime = 0f;
+    [SerializeField] public float damageOverTimeDuration = 0f;
+    [SerializeField] public float slowPercent = 1f;
 
     // Specifics for each tower
     [Header("Tower Parts")]
@@ -81,7 +82,8 @@ public class Tower : MonoBehaviour
         }
     }
 
-    protected virtual void shoot(GameObject target, float damage)
+    protected virtual void shoot(GameObject target, float damage, float damageOverTime, 
+        float damageOverTimeDuration, float slowPercent)
     {
         Enemy enemy = currentTarget.GetComponent<Enemy>();
     }
@@ -91,19 +93,12 @@ public class Tower : MonoBehaviour
         // Ensure there is a valid target and the rotation pivot are set
         if( pivot != null & currentTarget != null )
         {
-            // One method to rotate barrel
+            // Rotate barrel
             Vector2 dir = currentTarget.transform.position - pivot.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
             Vector3 newRotation = new Vector3(0, 0, angle);
             pivot.localRotation = Quaternion.Euler(newRotation);
-
-            // Second method to rotate barrel - not working
-            /*Vector3 dir = currentTarget.transform.position - pivot.position;
-            Quaternion lookRotation = Quaternion.LookRotation(dir);
-            Vector3 rotation = Quaternion.Lerp(pivot.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-            pivot.rotation = Quaternion.Euler(0f, 0f, rotation.z);
-            Debug.Log(rotation.z);*/
         }
     }
 
@@ -113,19 +108,11 @@ public class Tower : MonoBehaviour
         // Rotate barrel towards the enemy
         rotateTurret();
 
-        // Check time
-        //Debug.Log("Time1: " + Time.time + ". Time2: " + nextTimeToShoot);
-
         // Shoot if there is a valid target
-        // if there is a valid target and sufficient time passed since last shot
-        /*if (Time.time >= nextTimeToShoot && currentTarget != null )
-        {
-            shoot(currentTarget);
-            nextTimeToShoot = Time.time + timeBetweenShorts;
-        }*/
+        // and sufficient time passed since last shot
         if (currentTarget != null && fireCountdown <= 0f)
         {
-            shoot(currentTarget, damage);
+            shoot(currentTarget, damage, damageOverTime, damageOverTimeDuration, slowPercent);
             fireCountdown = 1 / fireRate;
         }
 

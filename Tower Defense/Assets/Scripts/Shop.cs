@@ -5,6 +5,8 @@ public class Shop : MonoBehaviour
     public TurretBlueprint standardTurret;
     public TurretBlueprint missileTurret;
     public TurretBlueprint laserTurret;
+    public TurretBlueprint fireTurret;
+    public TurretBlueprint slowTurret;
 
     BuildManager buildManager;
 
@@ -24,5 +26,13 @@ public class Shop : MonoBehaviour
     public void SelectLaserTurret()
     {
         buildManager.selectTurretToBuild(laserTurret);
+    }
+    public void SelectFireTurret()
+    {
+        buildManager.selectTurretToBuild(fireTurret);
+    }
+    public void SelectSlowTurret()
+    {
+        buildManager.selectTurretToBuild(slowTurret);
     }
 }

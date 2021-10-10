@@ -5,18 +5,22 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float enemyHealth;
-    [SerializeField] private float movementSpeed;
     [SerializeField] private int scoreValue;
 
     [SerializeField] UIController uIController;
+
+    // Damage over time effect
+    float damageOverTime = 0f;
+    float damageOverTimeDuration = 0f;
+
+    // Enemy Movement scripts
+    private EnemyMovement enemyMovement;
 
     // Money rewarded to player upon death
     private int killReward;
 
     // Damage inflicted when end reached
     private int damage;
-
-    private GameObject targetTile;
 
     private void Awake()
     {
@@ -26,12 +30,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        initializeEnemy();
-    }
-
-    private void initializeEnemy()
-    {
-        targetTile = MapGenerator.startTile;
+        enemyMovement = GetComponent<EnemyMovement>();
     }
 
     public void takeDamage(float amount)
@@ -44,6 +43,15 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    // Sets a damage over time effect
+    public void takeDamageOverTime(float damage, float time)
+    {
+        // [TODO] - pick higher of existing or new damage (and time?)
+        damageOverTime = damage;
+        damageOverTimeDuration = time;
+    }
+    
+
     private void die()
     {
         Enemies.enemies.Remove(gameObject);
@@ -53,37 +61,8 @@ public class Enemy : MonoBehaviour
         uIController.setScore(scoreValue);
     }
 
-    private void moveEnemy()
-    {
-        transform.position = Vector3.MoveTowards(
-            transform.position, targetTile.transform.position, 
-            movementSpeed * Time.deltaTime );
-    }
-
-    private void checkPosition()
-    {
-        if( targetTile != null && targetTile != MapGenerator.endTile)
-        {
-            float distance = (transform.position - targetTile.transform.position).magnitude;
-
-            if( distance < 0.001f)
-            {
-                // set target tile to next tile
-                int currentIndex = MapGenerator.pathTiles.IndexOf(targetTile) + 1;
-
-                targetTile = MapGenerator.pathTiles[currentIndex + 1];
-            }
-        }
-
-        // reached end of map
-        if(gameObject.transform.position == MapGenerator.endTile.transform.position)
-        {
-            reachedEnd();
-        }
-    }
-
     // Decrease lives and destroy object
-    private void reachedEnd()
+    public void reachedEnd()
     {
         PlayerStats.lives -= (int)enemyHealth;
         uIController.setLives();
@@ -92,8 +71,11 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        // Check if end reached
-        checkPosition();
-        moveEnemy();
+        // Apply damage over time if effective
+        if (damageOverTimeDuration > 0f)
+        {
+            takeDamage(damageOverTime * Time.deltaTime);
+            damageOverTimeDuration -= Time.deltaTime;
+        }
     }
 }

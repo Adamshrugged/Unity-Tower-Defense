@@ -37,20 +37,40 @@ public class Node : MonoBehaviour
             return;
         }
 
+        // Check if there is a turret on the selected node, select that node to show sell or upgrade options
+        if (turret != null)
+        {
+            buildManager.SelectNode(this);
+            return;
+        }
+
         // check if selected turret is blank, if so then do not perform any actions
         if (!buildManager.CanBuild)
         {
             return;
         }
 
-        if (turret != null)
+        // build turret
+        BuildTurret( buildManager.getTurretToBuild() );
+    }
+
+    // Build a turret
+    void BuildTurret(TurretBlueprint blueprint)
+    {
+        // Verify player has sufficent energy
+        if (PlayerStats.energy < blueprint.cost)
         {
-            Debug.Log("Cannot build here");
+            Debug.Log("Insufficient energy");
             return;
         }
 
-        // can build
-        buildManager.BuildTurretOn(this);
+        // decrease cost from energy and update UI
+        PlayerStats.energy -= blueprint.cost;
+
+        // Instantiate turret and set node property
+        GameObject _turret = (GameObject)Instantiate(blueprint.prefab, GetBuildPosition(),
+            Quaternion.identity, buildManager.parentGameObject.transform);
+        turret = _turret;
     }
 
     private void OnMouseEnter()
@@ -61,14 +81,14 @@ public class Node : MonoBehaviour
             return;
         }
 
-        // check if selected turret is blank, if so then do not perform any actions
-        if (!buildManager.CanBuild)
+        // check if selected turret is blank, if so then highlight node
+        if (buildManager != null && !buildManager.CanBuild)
         {
             return;
         }
 
         // if there is a turret selected, then add color to node depending on available funds
-        if(buildManager.CanBuy)
+        if(buildManager != null && buildManager.CanBuy)
         {
             rend.material.color = hoverColor;
         }

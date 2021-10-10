@@ -7,9 +7,11 @@ public class BuildManager : MonoBehaviour
 
     // Starting money
     [SerializeField] UIController uIController;
+    [SerializeField] NodeUI nodeUI;
 
     [Header("Optional")]
     private TurretBlueprint turretToBuild;
+    private Node selectedNode;
 
     // Only one build manager - called when awoken
     private void Awake()
@@ -28,25 +30,31 @@ public class BuildManager : MonoBehaviour
     public void selectTurretToBuild(TurretBlueprint turret)
     {
         turretToBuild = turret;
+        DeselectNode();
+    }
+    public TurretBlueprint getTurretToBuild()
+    {
+        return turretToBuild;
     }
 
-    public void BuildTurretOn( Node node )
+    public void SelectNode(Node node)
     {
-        // Verify player has sufficent energy
-        if(PlayerStats.energy < turretToBuild.cost)
+        // hide if selecting again
+        if(selectedNode == node)
         {
-            Debug.Log("Insufficient energy");
+            DeselectNode();
             return;
         }
 
-        // decrease cost from energy and update UI
-        PlayerStats.energy -= turretToBuild.cost;
-        uIController.updateEnergy(PlayerStats.energy);
+        selectedNode = node;
+        turretToBuild = null;
 
-        // Instantiate turret and set node property
-        GameObject turret = (GameObject)Instantiate( turretToBuild.prefab, node.GetBuildPosition(),
-            Quaternion.identity, parentGameObject.transform);
-        node.turret = turret;
+        nodeUI.SetTarget(node);
     }
 
+    public void DeselectNode()
+    {
+        selectedNode = null;
+        nodeUI.Hide();
+    }
 }

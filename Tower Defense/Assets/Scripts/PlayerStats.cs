@@ -10,6 +10,13 @@ public class PlayerStats : MonoBehaviour
     public static int lives;
     public int startLives = 100;
 
+    public static int Rounds;
+
+    private void Start()
+    {
+        Rounds = 0;
+    }
+
     private void Awake()
     {
         energy = startEnergy;

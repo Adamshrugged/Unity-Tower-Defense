@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    // Variables set by bullet
     [SerializeField] int bulletSpeed;
     [SerializeField] float explosionRadius = 0f;
     [SerializeField] GameObject impactEffect = null;
-    public GameObject target = null;
+    
+    // Variables passed by tower
+    public float damageOverTime = 0f;
+    public float damageOverTimeDuration = 0f;
     public float damage;
+    public GameObject target = null;
+    public float slowPercent = 1f;
+
     private bool moving = false;
 
     private void Update()
@@ -56,6 +63,18 @@ public class Bullet : MonoBehaviour
                 Damage(collision.gameObject);
             }
 
+            // Apply damage of time effects if defined
+            if(damageOverTime > 0f && damageOverTimeDuration > 0f)
+            {
+                DamageOverTime(target, damageOverTime, damageOverTimeDuration);
+            }
+
+            // Apply slow speed 
+            if( slowPercent > 0f)
+            {
+                target.GetComponent<EnemyMovement>().Slow(slowPercent);
+            }
+
             // Destroy bullet
             Destroy(gameObject);
         }
@@ -81,6 +100,12 @@ public class Bullet : MonoBehaviour
     private void Damage(GameObject target)
     {
         target.GetComponent<Enemy>().takeDamage(damage);
+    }
+
+    // Apply damage to a single target over time
+    private void DamageOverTime(GameObject target, float damageOverTime, float damageOverTimeDuration)
+    {
+        target.GetComponent<Enemy>().takeDamageOverTime(damageOverTime, damageOverTimeDuration);
     }
 
     private void OnDrawGizmosSelected()

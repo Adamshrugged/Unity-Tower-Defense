@@ -12,6 +12,9 @@ public class RoundController : MonoBehaviour
 
     [SerializeField] public UIController uiController;
 
+    // Information on map
+    MapGenerator map;
+
     int round;
     public float timeVariable;
     private float countdown;
@@ -19,6 +22,9 @@ public class RoundController : MonoBehaviour
     private void Start()
     {
         round = 0;
+
+        // set map
+        map = FindObjectOfType<MapGenerator>();
     }
 
     private void SpawnEnemies()
@@ -27,7 +33,7 @@ public class RoundController : MonoBehaviour
     }
     IEnumerator ISpawnEnemies()
     {
-        Vector3 newPos = MapGenerator.startTile.transform.position;
+        Vector3 newPos = map.startTile.transform.position;
         Vector3 finalPos;
 
         for ( int i=0; i<round; i++)
@@ -55,6 +61,7 @@ public class RoundController : MonoBehaviour
         {
             countdown = timeBetweenWaves;
             round++;
+            PlayerStats.Rounds++;
             uiController.setWave(round);
             SpawnEnemies();
         }
