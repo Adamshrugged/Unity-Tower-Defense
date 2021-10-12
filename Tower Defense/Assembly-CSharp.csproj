@@ -54,6 +54,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Node.cs" />
+    <Compile Include="Assets\sceneFader.cs" />
     <Compile Include="Assets\Scripts\RoundController.cs" />
     <Compile Include="Assets\Scripts\TurretBlueprint.cs" />
     <Compile Include="Assets\Scripts\NodeUI.cs" />
@@ -61,7 +62,9 @@
     <Compile Include="Assets\Scripts\BuildManager.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\MainMenu.cs" />
     <Compile Include="Assets\Scripts\BasicTower.cs" />
+    <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\TowerBarrelRotation.cs" />
     <Compile Include="Assets\Scripts\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\GameOver.cs" />
@@ -72,9 +75,7 @@
     <Compile Include="Assets\Scripts\UIController.cs" />
     <Compile Include="Assets\Scripts\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\Enemies.cs" />
-    <Compile Include="Assets\Scripts\PauseMenu.cs" />
-    <Compile Include="Assets\MainMenu.cs" />
-    <Compile Include="Assets\sceneFader.cs" />
+    <Compile Include="Assets\Scripts\Wave.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\LICENSE.txt" />

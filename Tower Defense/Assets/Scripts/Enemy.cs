@@ -64,6 +64,9 @@ public class Enemy : MonoBehaviour
 
         // reward player for death
         uIController.setScore(scoreValue);
+
+        // Decrease count of enemies alive
+        RoundController.EnemiesAlive--;
     }
 
     // Decrease lives and destroy object
@@ -72,6 +75,9 @@ public class Enemy : MonoBehaviour
         PlayerStats.lives -= (int)enemyHealth;
         uIController.setLives();
         Destroy(gameObject);
+
+        // Decrease count of enemies alive
+        RoundController.EnemiesAlive--;
     }
 
     private void Update()

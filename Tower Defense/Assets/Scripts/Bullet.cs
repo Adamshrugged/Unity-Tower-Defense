@@ -66,13 +66,19 @@ public class Bullet : MonoBehaviour
             // Apply damage of time effects if defined
             if(damageOverTime > 0f && damageOverTimeDuration > 0f)
             {
-                DamageOverTime(target, damageOverTime, damageOverTimeDuration);
+                if (target != null)
+                {
+                    DamageOverTime(target, damageOverTime, damageOverTimeDuration);
+                }
             }
 
             // Apply slow speed 
             if( slowPercent > 0f)
             {
-                target.GetComponent<EnemyMovement>().Slow(slowPercent);
+                if (target != null)
+                {
+                    target.GetComponent<EnemyMovement>().Slow(slowPercent);
+                }
             }
 
             // Destroy bullet
