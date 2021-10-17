@@ -7,6 +7,7 @@ public class Shop : MonoBehaviour
     public TurretBlueprint laserTurret;
     public TurretBlueprint fireTurret;
     public TurretBlueprint slowTurret;
+    public TurretBlueprint energyCollector;
 
     BuildManager buildManager;
 
@@ -34,5 +35,9 @@ public class Shop : MonoBehaviour
     public void SelectSlowTurret()
     {
         buildManager.selectTurretToBuild(slowTurret);
+    }
+    public void SelectEnergyCollector()
+    {
+        buildManager.selectTurretToBuild(energyCollector);
     }
 }

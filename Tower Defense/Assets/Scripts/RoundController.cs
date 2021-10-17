@@ -5,13 +5,12 @@ using UnityEngine;
 public class RoundController : MonoBehaviour
 {
     [SerializeField] public GameObject parentGameObject;
-
     [SerializeField] public float timeBetweenWaves;
     [SerializeField] public float timeBeforeRoundStarts;
-
     [SerializeField] public UIController uiController;
-
     [SerializeField] public Wave[] waves;
+
+    public GameManager gameManager;
 
     public static int EnemiesAlive;
 
@@ -39,6 +38,7 @@ public class RoundController : MonoBehaviour
     IEnumerator ISpawnEnemies()
     {
         Wave wave = waves[round - 1];
+        EnemiesAlive += wave.count;
 
         for (int i = 0; i < wave.count; i++)
         {
@@ -57,7 +57,6 @@ public class RoundController : MonoBehaviour
 
         GameObject newEnemy = Instantiate(enemy, finalPos, Quaternion.identity,
                 parentGameObject.transform);
-        EnemiesAlive++;
     }
 
 
@@ -66,8 +65,7 @@ public class RoundController : MonoBehaviour
         // Check if end of round reached. Disables script
         if (round == waves.Length && EnemiesAlive == 0)
         {
-            Debug.Log("You win!");
-            this.enabled = false;
+            gameManager.WinLevel();
             return;
         }
 

@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 2
-  damage: 5
+  damage: 10
   fireRate: 0.5
   fireCountdown: 0
   damageOverTime: 0

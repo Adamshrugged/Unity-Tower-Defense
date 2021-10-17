@@ -129,10 +129,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 4
   damage: 80
-  fireRate: 0.6
+  fireRate: 0.25
   fireCountdown: 0
-  damageOverTime: 0
-  damageOverTimeDuration: 0
+  damageOverTime: 10
+  damageOverTimeDuration: 5
   slowPercent: 0
   bullet: {fileID: 6902548637892529106, guid: 1b96519d912d2c84f9fa433e870538b3, type: 3}
   barrel: {fileID: 2985280738236388406}

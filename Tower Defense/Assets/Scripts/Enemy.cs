@@ -59,14 +59,14 @@ public class Enemy : MonoBehaviour
 
     private void die()
     {
-        Enemies.enemies.Remove(gameObject);
-        Destroy(transform.gameObject);
-
         // reward player for death
         uIController.setScore(scoreValue);
 
         // Decrease count of enemies alive
         RoundController.EnemiesAlive--;
+
+        Enemies.enemies.Remove(gameObject);
+        Destroy(transform.gameObject);
     }
 
     // Decrease lives and destroy object

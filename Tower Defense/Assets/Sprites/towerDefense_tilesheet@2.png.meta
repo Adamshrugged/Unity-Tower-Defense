@@ -403,7 +403,7 @@ TextureImporter:
     second: Tree_3
   - first:
       213: -2304854793829359254
-    second: Tree_4
+    second: Energy_collector
   - first:
       213: 5450867186795881884
     second: Tree_5
@@ -3793,13 +3793,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree_4
+      name: Energy_collector
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 896
-        width: 128
-        height: 128
+        x: 2307
+        y: 898
+        width: 124
+        height: 124
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

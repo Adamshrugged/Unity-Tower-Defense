@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcc01c27299c82d42a79e7ff7e0a50e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToLoad: TDGameScene
+  levelToLoad: TDGameLevelSelection
   sceneFader: {fileID: 244097801}
 --- !u!4 &644370243
 Transform:

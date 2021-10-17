@@ -19,6 +19,7 @@ public class sceneFader : MonoBehaviour
 
     public void FadeTo(string scene)
     {
+        // begin co routine to begin fade
         StartCoroutine( FadeOut(scene) );
 
     }

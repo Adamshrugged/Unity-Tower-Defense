@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static bool gameIsOver = false;
     [SerializeField] public GameObject gameOverUI;
+    [SerializeField] public GameObject completeLevelUI;
 
     private void Start()
     {
@@ -32,9 +33,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Losing the game
     private void EndGame()
     {
         gameIsOver = true;
         gameOverUI.SetActive(true);
+    }
+
+    // Display the "complete level" screen
+    public void WinLevel()
+    {
+        gameIsOver = true;
+        completeLevelUI.SetActive(true);
     }
 }

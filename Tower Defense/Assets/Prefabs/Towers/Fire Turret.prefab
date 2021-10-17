@@ -131,8 +131,8 @@ MonoBehaviour:
   damage: 0
   fireRate: 1
   fireCountdown: 0
-  damageOverTime: 10
-  damageOverTimeDuration: 3
+  damageOverTime: 5
+  damageOverTimeDuration: 5
   slowPercent: 0
   bullet: {fileID: 6902548637892529106, guid: ce62f07bb3d45ca47a5ef087b9e79a4c, type: 3}
   barrel: {fileID: 2985280738236388406}

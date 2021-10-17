@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\Tower.cs" />
     <Compile Include="Assets\Scripts\BuildManager.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Wave.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\MainMenu.cs" />
     <Compile Include="Assets\Scripts\BasicTower.cs" />
@@ -75,7 +76,10 @@
     <Compile Include="Assets\Scripts\UIController.cs" />
     <Compile Include="Assets\Scripts\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\Enemies.cs" />
-    <Compile Include="Assets\Scripts\Wave.cs" />
+    <Compile Include="Assets\Scripts\LevelSelector.cs" />
+    <Compile Include="Assets\Scripts\RoundsSurvived.cs" />
+    <Compile Include="Assets\Scripts\CompleteLevel.cs" />
+    <Compile Include="Assets\Scripts\TowerEnergyCollector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\LICENSE.txt" />
